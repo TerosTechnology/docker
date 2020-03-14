@@ -2,17 +2,19 @@ FROM ubuntu:18.04
 MAINTAINER Carlos Alberto, Ismael Perez, Alfredo Enrique Saez
 
 ENV HOME /home
+WORKDIR /home
 
-ADD ../scripts/utils.sh /home
-ADD ../scripts/ghdl.sh /home
-ADD ../scripts/icarus.sh /home
-ADD ../scripts/verilator.sh /home
-ADD ../scripts/tools.sh /home
+COPY ./scripts/utils.sh .
+COPY ./scripts/ghdl.sh .
+COPY ./scripts/icarus.sh .
+COPY ./scripts/verilator.sh .
+COPY ./scripts/tools.sh .
 
 RUN apt-get update -qq
 
-RUN cd ;chmod 777 ./utils.sh; sync;./utils.sh
-RUN cd ;chmod 777 ./ghdl.sh; sync;./ghdl.sh
-RUN cd ;chmod 777 ./icarus.sh; sync;./icarus.sh
-RUN cd ;chmod 777 ./verilator.sh; sync;./verilator.sh
-RUN cd ;chmod 777 ./tools.sh; sync;./tools.sh
+RUN chmod 777 *.sh
+RUN ./utils.sh
+RUN ./ghdl.sh
+RUN ./icarus.sh
+RUN ./verilator.sh
+RUN ./tools.sh

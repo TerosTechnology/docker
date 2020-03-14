@@ -1,3 +1,4 @@
+apt install -y apt-utils
 apt install -y gnat
 apt install -y gcc
 apt install -y g++
