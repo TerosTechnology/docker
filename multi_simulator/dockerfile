@@ -1,0 +1,20 @@
+FROM ubuntu:18.04
+MAINTAINER Carlos Alberto, Ismael Perez, Alfredo Enrique Saez
+
+ENV HOME /home
+WORKDIR /home
+
+COPY ./scripts/utils.sh .
+COPY ./scripts/ghdl.sh .
+COPY ./scripts/icarus.sh .
+COPY ./scripts/verilator.sh .
+COPY ./scripts/tools.sh .
+
+RUN apt-get update -qq
+
+RUN chmod 777 *.sh
+RUN ./utils.sh
+RUN ./ghdl.sh
+RUN ./icarus.sh
+RUN ./verilator.sh
+RUN ./tools.sh
