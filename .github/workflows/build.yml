@@ -1,0 +1,23 @@
+name: 'build'
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * 5'
+
+env:
+  CI: true
+  DOCKER_BUILDKIT: 1
+
+jobs:
+
+  base:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build -t teros/multi-simulator - < multi-simulator.dockerfile
+    - name: Deploy to hub.docker.com
+      run: |
+        echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+        docker push teros/multi-simulator
+        docker logout
