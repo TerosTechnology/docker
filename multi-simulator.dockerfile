@@ -11,6 +11,7 @@ RUN apt-get update -qq \
     gcc \
     g++ \
     git \
+    bzip2 \
     iverilog \
     libgmp3-dev \
     libmpfr-dev \
