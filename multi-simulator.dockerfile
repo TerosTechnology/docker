@@ -1,6 +1,6 @@
 FROM ghdl/vunit:llvm
 
-MAINTAINER Carlos Alberto, Ismael Perez, Alfredo Enrique Saez
+LABEL Mantainers="Carlos Alberto, Ismael Perez, Alfredo Enrique Saez"
 
 ENV HOME /home
 WORKDIR /home
@@ -11,6 +11,7 @@ RUN apt-get update -qq \
     gcc \
     g++ \
     git \
+    bzip2 \
     iverilog \
     libgmp3-dev \
     libmpfr-dev \
@@ -21,3 +22,5 @@ RUN apt-get update -qq \
     wget \
  && pip3 install wheel pytest \
  && pip3 install cocotb cocotb_test
+RUN npm install -g n \
+ && n stable
