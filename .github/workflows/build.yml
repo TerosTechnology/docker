@@ -11,7 +11,7 @@ env:
 
 jobs:
 
-  base:
+  multi-simulator:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -20,4 +20,15 @@ jobs:
       run: |
         echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
         docker push terostech/multi-simulator
+        docker logout
+
+  colibri:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build -t terostech/colibri - < colibri.dockerfile
+    - name: Deploy to hub.docker.com
+      run: |
+        echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+        docker push terostech/colibri
         docker logout
