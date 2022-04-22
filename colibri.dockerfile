@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.04
 
 LABEL Mantainers="Carlos Alberto, Ismael Perez, Alfredo Enrique Saez"
 
@@ -10,15 +10,16 @@ RUN apt-get update -qq \
     apt-utils \
     git \
     bzip2 \
-    python3.7 \
+    python3.9 \
     python3-pip \
     python3-dev \
-    nodejs \
-    npm \
     wget \
+    curl \
+    gnupg \
+    npm \
  && pip3 install vunit_hdl
-RUN npm install -g n \
- && n stable
+RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
 RUN mkdir /app \
  && cd /app \
  && git clone https://github.com/TerosTechnology/colibri.git \
