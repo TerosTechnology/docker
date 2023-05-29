@@ -22,6 +22,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 RUN mkdir /app \
  && cd /app \
- && git clone https://github.com/TerosTechnology/colibri.git \
+ && git clone https://github.com/TerosTechnology/colibri.git -b master \
  && cd colibri \
  && npm install -g .
