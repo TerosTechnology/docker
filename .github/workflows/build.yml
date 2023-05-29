@@ -2,8 +2,8 @@ name: 'build'
 
 on:
   push:
-  schedule:
-    - cron: '0 0 * * 5'
+  #schedule:
+  #  - cron: '0 0 * * 5'
 
 env:
   CI: true
@@ -14,7 +14,7 @@ jobs:
   multi-simulator:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: docker build -t terostech/multi-simulator - < multi-simulator.dockerfile
     - name: Deploy to hub.docker.com
       run: |
@@ -25,7 +25,7 @@ jobs:
   colibri:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: docker build -t terostech/colibri - < colibri.dockerfile
     - name: Deploy to hub.docker.com
       run: |
